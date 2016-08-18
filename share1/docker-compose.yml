@@ -1,0 +1,24 @@
+phpmyadmin:
+  image: phpmyadmin/phpmyadmin
+  container_name: myadmin
+  environment:
+   - PMA_ARBITRARY=1
+   - PMA_HOST=mysql
+   - PMA_USER=root
+   - PMA_PORT=3306
+   - PMA_PASSWORD=123456
+  links:
+  - mysql:mysql
+  restart: always
+  ports:
+   - 8080:80
+  volumes:
+   - /sessions
+mysql:
+  image: mysql
+  ports:
+  - 3306:3306
+  environment:
+  - MYSQL_ROOT_PASSWORD=123456
+  - MYSQL_USER=test
+  - MYSQL_PASSWORD=123123
